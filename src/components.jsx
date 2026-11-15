@@ -1,8 +1,22 @@
 import React from "react";
 import { entries, lines, projects } from "./data.jsx";
 
+export function CvDownload({ className, children }) {
+  return <a className={className} href="assets/docs/cv.pdf" download="CV-Gnim-Gregoire-DAO.pdf"
+    aria-label="Télécharger mon CV (PDF)">{children}</a>;
+}
+
 export function ProjectEntry({ id }) {
-  return entries[id];
+  const index = projects.findIndex((project) => project.id === id);
+  const previous = projects[index - 1];
+  const next = projects[index + 1];
+  return React.cloneElement(entries[id], {}, <>
+    {entries[id].props.children}
+    <nav className="project-nav" aria-label={`Navigation depuis la fiche ${projects[index].name}`}>
+      {previous && <a href={`#${previous.id}`}>← {previous.name}</a>}
+      {next && <a href={`#${next.id}`}>{next.name} →</a>}
+    </nav>
+  </>);
 }
 
 export function StarList({ variant, interaction, current }) {

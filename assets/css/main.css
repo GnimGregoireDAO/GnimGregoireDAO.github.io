@@ -190,6 +190,22 @@ ul, ol { padding: 0; list-style: none; }
 }
 .nav .nav-contact { color: var(--gold); }
 .nav .nav-contact:hover { color: var(--gold-bright); }
+.topbar-cv {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--rule-strong);
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.topbar-cv:hover { border-color: var(--gold); }
+.cv-label-short { display: none; }
 
 /* ---------- Héros : la carte ---------- */
 
@@ -547,6 +563,13 @@ h2 {
 .map--finder .c-line.is-path { stroke-width: 4; }
 
 .finder-list { border-top: 1px solid var(--rule); padding-top: 0.5rem; }
+.finder-progress {
+  margin-bottom: 0.65rem;
+  color: var(--ink-2);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 .finder-list a {
   display: flex;
   align-items: baseline;
@@ -584,7 +607,7 @@ h2 {
   line-height: 1.05;
   letter-spacing: -0.005em;
 }
-.entry--team h4 { font-size: clamp(1.6rem, 2.8vw, 2.25rem); }
+.entry--team h3 { font-size: clamp(1.6rem, 2.8vw, 2.25rem); }
 .entry h3 .greek,
 .entry h4 .greek {
   display: inline-block;
@@ -600,6 +623,24 @@ h2 {
   font-size: 1.2rem;
   line-height: 1.5;
 }
+
+.project-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+.project-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--electric-ink);
+  text-underline-offset: 0.2em;
+}
+.project-nav a:last-child { margin-left: auto; }
+.project-nav a:hover { color: var(--ink); }
 
 .marks {
   display: flex;
@@ -889,6 +930,10 @@ code {
   text-transform: uppercase;
 }
 .catalog td { padding: 1.15rem 0; vertical-align: baseline; }
+.stack-projects { display: grid; gap: 0.85rem; }
+.stack-projects li { display: grid; grid-template-columns: minmax(12rem, 19rem) minmax(0, 1fr); gap: 0.2rem 1rem; }
+.stack-projects span { color: var(--ink-2); }
+.catalog td a { color: var(--electric-ink); text-underline-offset: 0.2em; }
 
 .tokens {
   display: flex;
@@ -1031,6 +1076,9 @@ code {
   transition: text-decoration-color 0.2s var(--ease);
 }
 .signal-mail:hover { text-decoration-color: #fff; }
+.signal-actions { margin-top: 1.5rem; }
+.signal-cv { border-color: #fff; color: #fff; }
+.signal-cv:hover { background: #fff; color: var(--night); }
 .signal-links {
   display: flex;
   flex-wrap: wrap;
@@ -1084,6 +1132,8 @@ code {
 @media (max-width: 1100px) {
   .atlas-body { grid-template-columns: minmax(0, 1fr); }
   .finder { display: none; }
+  .cv-label-full { display: none; }
+  .cv-label-short { display: inline; }
 }
 
 @media (max-width: 900px) {
@@ -1140,6 +1190,18 @@ code {
 }
 
 @media (max-width: 680px) {
+  :root { --topbar: 6rem; }
+  .topbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "brand cv" "nav nav";
+    grid-template-rows: 1fr 1fr;
+    gap: 0;
+  }
+  .topbar .brand { grid-area: brand; }
+  .topbar-cv { grid-area: cv; }
+  .topbar .nav { grid-area: nav; }
+  .nav ul { justify-content: space-between; }
   .brand span {
     position: absolute;
     width: 1px; height: 1px;
@@ -1147,7 +1209,6 @@ code {
     clip: rect(0 0 0 0);
     white-space: nowrap;
   }
-  .topbar { gap: 0.5rem; }
   .nav a {
     padding-inline: 0.4rem;
     font-size: 0.68rem;
@@ -1166,6 +1227,7 @@ code {
   .catalog tbody tr { padding-block: 1.1rem; }
   .catalog tbody th { padding: 0 0 0.4rem; }
   .catalog td { padding: 0; }
+  .stack-projects li { grid-template-columns: minmax(0, 1fr); }
 
   .arc-path { display: none; }
   .arc-stops {

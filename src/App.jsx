@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Content from "./Content.jsx";
 import { drawSky } from "./sky.js";
+import { projects } from "./data.jsx";
 
 function useInteraction() {
   const [pointer, setPointer] = useState(null);
@@ -18,7 +19,7 @@ function useInteraction() {
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
-  const [currentStar, setCurrentStar] = useState("bimy");
+  const [currentStar, setCurrentStar] = useState(projects[0].id);
   const heroInteraction = useInteraction();
   const finderInteraction = useInteraction();
 

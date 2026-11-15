@@ -1,5 +1,6 @@
 import React from "react";
-import { StarMap, StarList, ProjectEntry } from "./components.jsx";
+import { CvDownload, StarMap, StarList, ProjectEntry } from "./components.jsx";
+import { projects } from "./data.jsx";
 export default function Content({ scrolled, heroInteraction, finderInteraction, currentStar, currentSection }) {
   return <>
   <a className={"skip"} href={"#projets"}>Aller aux projets</a>
@@ -17,6 +18,10 @@ export default function Content({ scrolled, heroInteraction, finderInteraction, 
         <li><a className={"nav-contact"} href={"#contact"} aria-current={currentSection === "contact" ? "true" : undefined}>Contact</a></li>
       </ul>
     </nav>
+    <CvDownload className="topbar-cv">
+      <span className="cv-label-full">Télécharger mon CV (PDF)</span>
+      <span className="cv-label-short" aria-hidden="true">CV (PDF)</span>
+    </CvDownload>
   </header>
 
   <main>
@@ -26,8 +31,8 @@ export default function Content({ scrolled, heroInteraction, finderInteraction, 
 
       <div className={"hero-copy"}>
         <h1 id={"hero-title"}><span>Gnim</span> <span>Grégoire</span> <span className={"h1-last"}>DAO</span></h1>
-        <p className={"hero-role"}><span>Développeur <span className={"nowrap"}>full-stack junior</span></span> <span>Web&nbsp;· Mobile&nbsp;· DevOps</span></p>
-        <p className={"hero-lead"}>J'analyse les besoins, je conçois des solutions performantes et j'accompagne les personnes qui les utilisent. De l'interface au pipeline de déploiement, j'aime comprendre toute la chaîne.</p>
+        <p className={"hero-role"}><span>Développeur <span className={"nowrap"}>full-stack junior</span></span> <span>Web&nbsp;· CI/CD</span></p>
+        <p className={"hero-lead"}>Je conçois des applications web, de l'interface au déploiement. J'accorde une attention particulière à la sécurité et à l'intégration continue.</p>
         <p className={"hero-meta"}>Terrebonne (QC)&nbsp;· Étudiant au Cégep de Rosemont&nbsp;· Fondateur de <a href={"https://gdgproductions.ca"} target={"_blank"} rel={"noopener"}>GDG&nbsp;Productions<span className={"sr-only"}> (nouvel onglet)</span></a></p>
         <div className={"hero-actions"}>
           <a className={"btn btn-primary"} href={"#projets"}>Explorer les projets</a>
@@ -63,29 +68,12 @@ export default function Content({ scrolled, heroInteraction, finderInteraction, 
         <div className={"atlas-body"}>
           <aside className={"finder"} aria-label={"Repérage dans les fiches"}>
             <div className="finder-map"><StarMap variant="finder" interaction={finderInteraction} current={currentStar} /></div>
+            <p className="finder-progress">Fiche {projects.findIndex((project) => project.id === currentStar) + 1} sur {projects.length}</p>
             <StarList variant="finder" interaction={finderInteraction} current={currentStar} />
           </aside>
 
           <div className={"entries"}>
-            <ProjectEntry id="bimy" />
-
-            <ProjectEntry id="gdg" />
-
-            <ProjectEntry id="iga" />
-
-            <section className={"multiples"} aria-labelledby={"multiples-title"}>
-              <svg className={"multiples-mark"} viewBox={"-30 -18 60 36"} aria-hidden={"true"}><line className={"bar"} x1={"-26"} x2={"26"}></line><circle className={"core"} r={"10"}></circle></svg>
-              <div>
-                <h3 id={"multiples-title"}>Étoiles multiples</h3>
-                <p>Sur une carte du ciel, une étoile multiple est un système de plusieurs astres. Voici trois projets réalisés en équipe, avec ce qui était ma part.</p>
-              </div>
-            </section>
-
-            <ProjectEntry id="kaypic" />
-
-            <ProjectEntry id="manara" />
-
-            <ProjectEntry id="invite-me" />
+            {projects.map(({ id }) => <ProjectEntry key={id} id={id} />)}
           </div>
         </div>
       </div>
@@ -94,19 +82,21 @@ export default function Content({ scrolled, heroInteraction, finderInteraction, 
     <section id={"competences"} className={"catalog-sec"} aria-labelledby={"competences-title"}>
       <div className={"wrap"}>
         <h2 id={"competences-title"}>Catalogue des compétences</h2>
-        <p className={"section-lead"}>Les langages, outils et méthodes que j'utilise dans mes projets et mes cours.</p>
+        <p className={"section-lead"}>Mon socle pour construire des applications web et les livrer, avec des exemples concrets.</p>
         <table className={"catalog"}>
-          <caption className={"sr-only"}>Compétences techniques par domaine</caption>
-          <thead><tr><th scope={"col"}>Domaine</th><th scope={"col"}>Outils et notions</th></tr></thead>
+          <caption className={"sr-only"}>Compétences techniques et projets associés</caption>
+          <thead><tr><th scope={"col"}>Domaine</th><th scope={"col"}>Outils et projets</th></tr></thead>
           <tbody>
-            <tr><th scope={"row"}>Langages</th><td><ul className={"tokens"}><li>Java</li><li>Kotlin</li><li>C#</li><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>SQL</li></ul></td></tr>
-            <tr><th scope={"row"}>Frameworks</th><td><ul className={"tokens"}><li>ASP.NET Core</li><li>Spring Boot</li><li>Angular</li><li>React</li><li>Astro</li><li>Bootstrap</li><li>GSAP</li></ul></td></tr>
-            <tr><th scope={"row"}>Mobile</th><td><ul className={"tokens"}><li>Android SDK</li><li>Android Studio</li><li>MVVM</li><li>Room (SQLite)</li><li>Navigation Component</li><li>Material Design</li><li>Coroutines</li></ul></td></tr>
-            <tr><th scope={"row"}>Web</th><td><ul className={"tokens"}><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>Node.js serverless</li></ul></td></tr>
-            <tr><th scope={"row"}>Bases de données</th><td><ul className={"tokens"}><li>SQL Server</li><li>MySQL</li><li>PostgreSQL</li><li>SQLite</li></ul></td></tr>
-            <tr><th scope={"row"}>DevOps</th><td><ul className={"tokens"}><li>Git</li><li>GitLab CI/CD</li><li>Docker</li><li>Vercel</li><li>Firebase Hosting</li><li>pnpm</li></ul></td></tr>
-            <tr><th scope={"row"}>Sécurité</th><td><ul className={"tokens"}><li>ASP.NET Core Identity</li><li>Spring Security</li><li>OAuth2</li><li>JWT</li><li>RBAC</li></ul></td></tr>
-            <tr><th scope={"row"}>Méthodes</th><td><ul className={"tokens"}><li>Agile</li><li>MVC</li><li>REST</li><li>CI/CD</li></ul></td></tr>
+            <tr><th scope={"row"}>Stack principal</th><td>
+              <ul className="stack-projects">
+                <li><strong>Java · Spring Boot</strong><span><a href="#iga">IGA</a>, <a href="#manara">CRM Manara</a>, <a href="#bimy">Bimy</a></span></li>
+                <li><strong>Angular · TypeScript</strong><span><a href="#iga">IGA</a>, <a href="#manara">CRM Manara</a></span></li>
+                <li><strong>C# · ASP.NET Core</strong><span><a href="#kaypic">KayPic</a></span></li>
+                <li><strong>Astro · TypeScript</strong><span><a href="#gdg">GDG Productions</a>, <a href="#bimy">Bimy</a></span></li>
+              </ul>
+            </td></tr>
+            <tr><th scope={"row"}>Livraison et qualité</th><td><p>GitLab CI/CD : tests avec <code>mvn verify</code> et rapports JUnit, analyse SAST, détection de secrets et image Docker sur <a href="#manara">CRM Manara</a>. Analyse statique avec SonarQube.</p></td></tr>
+            <tr><th scope={"row"}>Aussi utilisé</th><td><p>Python, PHP, React, JavaScript, SQL, Kotlin, Android, PostgreSQL, MySQL, Git et Firebase.</p></td></tr>
           </tbody>
         </table>
       </div>
@@ -141,13 +131,13 @@ export default function Content({ scrolled, heroInteraction, finderInteraction, 
             <h3>Langues</h3>
             <dl className={"langs"}>
               <div><dt>Français</dt><dd>Maîtrisé</dd></div>
-              <div><dt>Anglais</dt><dd>Débutant</dd></div>
+              <div><dt>Anglais</dt><dd>Fonctionnel</dd></div>
             </dl>
           </div>
           <div>
             <h3>Ce qui m'attire</h3>
             <ul className={"tokens"}>
-              <li>Développement mobile</li><li>DevOps</li><li>Intelligence artificielle</li><li>Design web</li><li>Animation GSAP</li><li>Entrepreneuriat numérique</li>
+              <li>Développement web</li><li>DevOps</li><li>Design web</li>
             </ul>
           </div>
         </div>
@@ -160,6 +150,9 @@ export default function Content({ scrolled, heroInteraction, finderInteraction, 
         <h2 id={"contact-title"}>Établir le contact</h2>
         <p className={"signal-lead"}>Vous cherchez un développeur junior qui aime autant l'interface que le pipeline de déploiement ? Écrivez-moi.</p>
         <a className={"signal-mail"} href={"mailto:gnimdaoqc@gmail.com"}>gnimdaoqc@gmail.com</a>
+        <div className="signal-actions">
+          <CvDownload className="btn signal-cv">Télécharger mon CV (PDF)</CvDownload>
+        </div>
         <ul className={"signal-links"}>
           <li><a className={"ext"} href={"https://github.com/GnimGregoireDAO"} target={"_blank"} rel={"noopener me"}>GitHub<span className={"sr-only"}> (nouvel onglet)</span></a></li>
           <li><a className={"ext"} href={"https://www.linkedin.com/in/gnim-gregoire-dao-40285432a"} target={"_blank"} rel={"noopener me"}>LinkedIn<span className={"sr-only"}> (nouvel onglet)</span></a></li>

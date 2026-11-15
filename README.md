@@ -21,7 +21,7 @@ Le build Vite produit `dist/` et pré-rend la page en HTML : le contenu, les lie
 - `src/data.jsx` : données des étoiles, tracés et contenu des fiches de projets.
 - `src/components.jsx` : carte, listes et fiches partagées.
 - `src/App.jsx` et `src/sky.js` : interactions, suivi de lecture et dessin du ciel.
-- `assets/css/main.css` : styles de la constellation ; `assets/fonts/` et `assets/img/` : ressources auto-hébergées.
+- `assets/css/main.css` : styles de la constellation ; `assets/fonts/`, `assets/img/` et `assets/docs/` : polices, images et CV.
 - `index.html` : métadonnées et point d'entrée ; `404.html` : page introuvable.
 - `scripts/prerender.js` : pré-rendu et copie des ressources dans `dist/`.
 

@@ -1,4 +1,5 @@
 import React from "react";
+const projectOrder = ["gdg", "iga", "kaypic", "manara", "bimy", "invite-me"];
 export const projects = [
   { id: "bimy", greek: "α", name: "Bimy", className: "star star--variable", transform: "translate(720 150)", label: "Alpha, Bimy : projet solo en cours. Ouvrir la fiche", glyph: <>
             <circle className={"hit"} r={"44"}></circle>
@@ -48,7 +49,7 @@ export const projects = [
             <text className={"sub"} x={"0"} y={"-26"} textAnchor={"middle"}>Événements · Android</text>
             <text className={"lbl-short"} x={"0"} y={"-34"} textAnchor={"middle"}><tspan className={"greek"}>ζ</tspan></text>
           </> },
-];
+].sort((a, b) => projectOrder.indexOf(a.id) - projectOrder.indexOf(b.id));
 export const lines = [
   {
     "class": "c-line",
@@ -143,6 +144,10 @@ export const entries = {
                     <li>Refonte complète de l'interface en cours : accueil, destinations et page À propos.</li>
                   </ul>
                 </dd>
+                <dt>État</dt>
+                <dd>Prototype fonctionnel en développement, nouvelle interface en cours.</dd>
+                <dt>Prochaine étape</dt>
+                <dd>Déploiement prévu le 17 décembre 2026.</dd>
                 <dt>Technologies</dt>
                 <dd className={"stack"}>Astro&nbsp;· TypeScript&nbsp;· Spring&nbsp;Boot&nbsp;· Java&nbsp;21&nbsp;· PostgreSQL&nbsp;· JPA&nbsp;· Cloudflare&nbsp;Pages</dd>
               </dl>
@@ -167,16 +172,6 @@ export const entries = {
                 <p className={"plates-note"}>Interface en développement local. Les contenus et les chiffres affichés sont des données de démonstration.</p>
               </div>
 
-              <section className={"cap"} aria-labelledby={"bimy-cap"}>
-                <h4 id={"bimy-cap"}>Aujourd'hui et cap</h4>
-                <ol className={"orbit"}>
-                  <li className={"orbit-now"}><span className={"orbit-when"}>Aujourd'hui</span><p>Prototype fonctionnel en développement, nouvelle interface en cours.</p></li>
-                  <li><span className={"orbit-when"}>17 décembre 2026</span><p>Déploiement.</p></li>
-                  <li><span className={"orbit-when"}>Prévu</span><p>Architecture frontend-first avec Astro et Supabase : base de données et routes protégées par rôle (RBAC).</p></li>
-                  <li><span className={"orbit-when"}>Prévu</span><p>Publicités, et abonnement à 1 $ CA pour les retirer.</p></li>
-                  <li><span className={"orbit-when"}>Ensuite</span><p>Une IA réservée aux abonnés pour poser des questions sur les publications.</p></li>
-                </ol>
-              </section>
             </article>),
   "gdg": (<article id={"gdg"} className={"entry entry--gdg"} data-star={"gdg"} aria-labelledby={"gdg-title"}>
               <header className={"entry-head"}>
@@ -269,7 +264,7 @@ export const entries = {
             </article>),
   "kaypic": (<article id={"kaypic"} className={"entry entry--team"} data-star={"kaypic"} aria-labelledby={"kaypic-title"}>
               <header className={"entry-head"}>
-                <h4 id={"kaypic-title"}><span className={"greek"}>δ</span> KayPic</h4>
+                <h3 id={"kaypic-title"}><span className={"greek"}>δ</span> KayPic</h3>
                 <p className={"entry-tagline"}>Plateforme web de gestion d'équipes, avec un espace pour chaque rôle : parent, joueur et gérant d'équipe.</p>
                 <ul className={"marks"} aria-label={"Repères du projet"}>
                   <li><svg viewBox={"-20 -12 40 24"} aria-hidden={"true"}><line className={"bar"} x1={"-15"} x2={"15"}></line><circle className={"core"} r={"6"}></circle></svg>Équipe de 3</li>
@@ -299,7 +294,7 @@ export const entries = {
             </article>),
   "manara": (<article id={"manara"} className={"entry entry--team"} data-star={"manara"} aria-labelledby={"manara-title"}>
               <header className={"entry-head"}>
-                <h4 id={"manara-title"}><span className={"greek"}>ε</span> CRM Manara</h4>
+                <h3 id={"manara-title"}><span className={"greek"}>ε</span> CRM Manara</h3>
                 <p className={"entry-tagline"}>Un CRM réalisé en équipe, avec des accès distincts pour les administrateurs, les parents et les animateurs.</p>
                 <ul className={"marks"} aria-label={"Repères du projet"}>
                   <li><svg viewBox={"-20 -12 40 24"} aria-hidden={"true"}><line className={"bar"} x1={"-15"} x2={"15"}></line><circle className={"core"} r={"6"}></circle></svg>Équipe de 4</li>
@@ -325,7 +320,7 @@ export const entries = {
             </article>),
   "invite-me": (<article id={"invite-me"} className={"entry entry--team"} data-star={"invite-me"} aria-labelledby={"invite-title"}>
               <header className={"entry-head"}>
-                <h4 id={"invite-title"}><span className={"greek"}>ζ</span> Invite-Me</h4>
+                <h3 id={"invite-title"}><span className={"greek"}>ζ</span> Invite-Me</h3>
                 <p className={"entry-tagline"}>Application Android pour organiser des événements, aussi appelée GetTogether.</p>
                 <ul className={"marks"} aria-label={"Repères du projet"}>
                   <li><svg viewBox={"-20 -12 40 24"} aria-hidden={"true"}><line className={"bar"} x1={"-15"} x2={"15"}></line><circle className={"core"} r={"6"}></circle></svg>Équipe de 3</li>
