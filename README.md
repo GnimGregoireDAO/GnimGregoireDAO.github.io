@@ -1,25 +1,40 @@
-# GnimGregoireDAO.github.io
+# Portfolio de Gnim Grégoire DAO
 
-Portfolio de Gnim Grégoire DAO, développeur full-stack junior : https://gnimgregoiredao.github.io/
+Portfolio React de Gnim Grégoire DAO : https://gnimgregoiredao.github.io/
 
-Le site est statique (HTML, CSS et JavaScript, sans étape de build) et est publié par GitHub Pages à partir de la branche `main`.
+## Développement
+
+Node.js 24 et npm sont recommandés.
+
+```sh
+npm ci
+npm run dev
+npm run build
+npm run preview
+```
+
+Le build Vite produit `dist/` et pré-rend la page en HTML : le contenu, les liens et les métadonnées restent accessibles sans JavaScript. React hydrate ensuite la page pour activer les interactions. La page `404.html`, les polices et les images sont copiées dans le build.
 
 ## Structure
 
-```
-index.html              Contenu de la page (héros, fiches de projets, compétences, parcours, contact)
-404.html                Page « Cette étoile n'est pas sur la carte »
-favicon.svg
-assets/css/main.css     Styles : jetons de couleur en tête de fichier, puis une section par partie de la page
-assets/js/main.js       Ciel du héros (canvas), copies de la carte, surlignage et suivi de lecture
-assets/fonts/           Archivo et Noto Serif (grec), auto-hébergées, licence SIL OFL
-assets/img/             Captures des projets (WebP 1440×900), logo GDG, image de partage og.png
-```
+- `src/Content.jsx` : structure de la page.
+- `src/data.jsx` : données des étoiles, tracés et contenu des fiches de projets.
+- `src/components.jsx` : carte, listes et fiches partagées.
+- `src/App.jsx` et `src/sky.js` : interactions, suivi de lecture et dessin du ciel.
+- `assets/css/main.css` : styles de la constellation ; `assets/fonts/` et `assets/img/` : ressources auto-hébergées.
+- `index.html` : métadonnées et point d'entrée ; `404.html` : page introuvable.
+- `scripts/prerender.js` : pré-rendu et copie des ressources dans `dist/`.
 
-## Mettre le site à jour
+Pour ajouter un projet, compléter ses données dans `src/data.jsx`, ajouter sa fiche dans `src/Content.jsx`, ainsi que les tracés appropriés. Les captures restent dans `assets/img/projects/`, avec un texte alternatif descriptif.
 
-1. Modifier `index.html`. Chaque projet est un `<article class="entry">` dans la section `#projets`.
-2. Pour ajouter une étoile à la carte, copier un `<a class="star">` dans `#sky-map` (position dans `transform="translate(x y)"`), ajouter les `<line class="c-line">` qui la relient, puis la fiche et les entrées des listes `.chart-key` et `.finder-list`.
-3. Les captures vont dans `assets/img/projects/`, en WebP 1440×900, avec un texte `alt` qui décrit ce qu'on voit.
-4. Tester localement : `python -m http.server 8000` dans ce dossier, puis ouvrir http://localhost:8000.
-5. Faire un commit et un push sur `main`. GitHub Pages publie en une à deux minutes.
+## Publication sur GitHub Pages
+
+Le site public utilise actuellement la publication legacy depuis la racine de `main`. **La source React ne peut pas être servie directement par ce mode.** Le workflow `.github/workflows/pages.yml` construit et publie `dist/` uniquement sur déclenchement manuel.
+
+Après confirmation explicite de la publication :
+
+1. Dans les paramètres Pages du dépôt, choisir **GitHub Actions** comme source avant de fusionner la source React dans `main` ; prévoir une possible interruption pendant la transition.
+2. Fusionner les modifications, puis lancer manuellement le workflow **Deploy GitHub Pages** sur `main` depuis l'onglet Actions.
+3. Vérifier le site, ses ressources et la page 404 après le déploiement.
+
+Ne pas ajouter de `CNAME` : le site utilise `gnimgregoiredao.github.io`.
